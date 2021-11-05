@@ -1,0 +1,6 @@
+tmp/
+data/
+debug.log
+.vscode/launch.json
+.vscode/settings.json
+*.zip

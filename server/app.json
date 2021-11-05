@@ -1,0 +1,60 @@
+{
+    "name": "Kwik-E-Mart",
+    "description": "An online supermarket",
+    "repository": "https://github.com/roninbar/kwik-e-mart",
+    "logo": "https://cdn.shopify.com/s/files/1/0016/0425/5788/products/SD1622_600x.jpg?v=1543461710",
+    "keywords": [
+        "supermarket",
+        "ecommerce",
+        "mean",
+        "angular",
+        "express",
+        "node",
+        "mongodb"
+    ],
+    "stack": "heroku-20",
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "jontewks/puppeteer"
+        }
+    ],
+    "env": {
+        "AWS_ACCESS_KEY_ID": {
+            "description": "AWS IAM access key ID"
+        },
+        "AWS_SECRET_ACCESS_KEY": {
+            "description": "AWS IAM access secret key"
+        },
+        "AWS_REGION": {
+            "description": "AWS region",
+            "value": "eu-central-1"
+        },
+        "AWS_S3_BUCKET": {
+            "description": "AWS S3 bucket name",
+            "value": "kwik-e-mart"
+        },
+        "DEBUG": {
+            "description": "Mask for log messages",
+            "value": "server:*",
+            "required": false
+        },
+        "MONGODBURL": {
+            "description": "MongoDB connection string (please change this to point to your own cluster)",
+            "value": "mongodb+srv://guest:guest@cluster0.ahima.mongodb.net/kwik-e-mart"
+        },
+        "SECRET_FOR_SESSION": {
+            "description": "A secret key for signing session cookies",
+            "generator": "secret"
+        },
+        "SECRET_FOR_USER": {
+            "description": "A secret key for hashing user credentials"
+        },
+        "SIDNAME": {
+            "description": "Session ID cookie name",
+            "value": "connect.sid"
+        }
+    }
+}

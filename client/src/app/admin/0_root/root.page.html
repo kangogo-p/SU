@@ -1,0 +1,74 @@
+<!-- Main Toolbar -->
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+
+        <!-- Website Title -->
+        <span class="cursor-pointer">Kwik-E-Mart (Admin)</span>
+
+        <span class="flex-fill"></span>
+
+        <!-- Logged-In User + Logout Button -->
+        <ng-container *ngIf="authService.getLoggedInUser() as user">
+            <button mat-button [matMenuTriggerFor]="userMenu">Hello, {{user.name.first}}!</button>
+            <mat-menu #userMenu="matMenu">
+                <button mat-menu-item (click)="logOut()">
+                    <mat-icon>logout</mat-icon>Log Out
+                </button>
+            </mat-menu>
+        </ng-container>
+
+    </mat-toolbar-row>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+    <!-- Product Details Sidenav -->
+    <mat-sidenav mode="push" position="start" fixedInViewport #sidenav [opened]="!!editedProduct" (closed)="editedProduct = null">
+
+        <button mat-icon-button type="button" (click)="sidenav.close()">
+            <mat-icon>close</mat-icon>
+        </button>
+
+        <mat-card>
+            <img mat-card-image [src]="editedProduct?.imageUrl" [alt]="editedProduct?.name">
+            <mat-card-header>
+                <mat-card-title>{{editedProduct?.name || 'New Product'}}</mat-card-title>
+                <mat-card-subtitle>{{editedProduct?.price | currency}}</mat-card-subtitle>
+            </mat-card-header>
+            <form method="post" action="/api/category/{{editedProduct?.categoryId}}/product" #product="ngForm" (ngSubmit)="save(product); sidenav.close()">
+                <input type="hidden" name="_id" [ngModel]="editedProduct?._id">
+                <input type="hidden" name="categoryId" [ngModel]="editedProduct?.categoryId">
+                <input type="hidden" name="imageUrl" [ngModel]="editedProduct?.imageUrl">
+                <mat-card-content>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Image File</mat-label>
+                        <ngx-mat-file-input accept="image/*" #image (change)="upload(image)"></ngx-mat-file-input>
+                        <mat-icon matSuffix>image</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" name="name" [ngModel]="editedProduct?.name" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Price</mat-label>
+                        <input matInput type="number" min="0" name="price" [ngModel]="editedProduct?.price">
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-flat-button color="basic" type="reset" (click)="sidenav.close()">Cancel</button>
+                    <button mat-flat-button color="primary" type="submit" [disabled]="product.invalid">Save</button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

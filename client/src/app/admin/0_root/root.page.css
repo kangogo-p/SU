@@ -1,0 +1,46 @@
+.flex-fill {
+    flex: 1 1 auto;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+mat-sidenav {
+    width: 100%;
+    padding: 16px;
+}
+
+@media (min-width: 576px) {
+    mat-sidenav {
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    mat-sidenav {
+        width: calc(100% / 3);
+    }
+}
+
+@media (min-width: 992px) {
+    mat-sidenav {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1200px) {
+    mat-sidenav {
+        width: calc(100% / 6);
+    }
+}
+
+mat-card-header {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+}

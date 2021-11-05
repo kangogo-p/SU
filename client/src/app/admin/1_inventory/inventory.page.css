@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.item {
+    flex: 100% 0;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 576px) {
+    .item {
+        flex: 50% 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .item {
+        flex: calc(100% / 3) 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .item {
+        flex: 25% 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .item {
+        flex: calc(100% / 6) 0;
+    }
+}
+
+[mat-fab] {
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+}

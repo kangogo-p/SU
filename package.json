@@ -1,0 +1,23 @@
+{
+  "name": "kwik-e-mart",
+  "version": "0.1.0",
+  "description": "An online supermarket",
+  "main": "index.js",
+  "scripts": {
+    "github-heroku-push": "git subtree push --prefix server origin heroku",
+    "heroku-push": "git subtree push --prefix server heroku master",
+    "heroku-local": "cd server && heroku local",
+    "heroku-open": "heroku open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roninbar/kwik-e-mart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roninbar/kwik-e-mart/issues"
+  },
+  "homepage": "https://github.com/roninbar/kwik-e-mart#readme"
+}
